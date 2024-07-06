@@ -28,7 +28,6 @@ function rSquared(x, y, coefficients) {
 
   
   module.exports = {
-    getPrice,
     rSquared
   }
 
