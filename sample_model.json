@@ -1,0 +1,21 @@
+{
+    "model": "DecisionTreeClassifier",
+    "parameters": {
+        "criterion": "gini",
+        "splitter": "best",
+        "max_depth": 2
+    },
+    "tree_structure": {
+        "node": "root",
+        "feature": "feature_1",
+        "threshold": 0.5,
+        "left": {
+            "node": "leaf",
+            "value": "class_0"
+        },
+        "right": {
+            "node": "leaf",
+            "value": "class_1"
+        }
+    }
+}
