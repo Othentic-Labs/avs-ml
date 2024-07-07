@@ -7,13 +7,11 @@ contract ModelSubmissionContract {
     address public owner = 0x4349807050939f95Aa0C494B496F0a694D20F98E;
     
     struct Model {
-
         address submitter;
         string pinataHash;
         uint256 timestamp;
         uint256 submissionFee;
         bool isProcessed;
-
     }
     
     Model[] public models;
@@ -26,7 +24,6 @@ contract ModelSubmissionContract {
     }
     
     function submitModel(string memory _pinataHash) external payable {
-
         require(msg.value > 0, "Submission fee must be greater than 0");
 
         models.push(Model({
@@ -44,6 +41,26 @@ contract ModelSubmissionContract {
         return models.length;
     }
     
+    function getAllModels() external view returns (Model[] memory) {
+        return models;
+    }
+    
+    function getModelsPaginated(uint256 _start, uint256 _limit) external view returns (Model[] memory) {
+        require(_start < models.length, "Start index out of bounds");
+        
+        uint256 end = _start + _limit;
+        if (end > models.length) {
+            end = models.length;
+        }
+        
+        Model[] memory result = new Model[](end - _start);
+        for (uint256 i = _start; i < end; i++) {
+            result[i - _start] = models[i];
+        }
+        
+        return result;
+    }
+    
     function withdrawFees() external onlyOwner {
         payable(owner).transfer(address(this).balance);
     }
@@ -52,5 +69,4 @@ contract ModelSubmissionContract {
         require(_modelIndex < models.length, "Invalid model index");
         models[_modelIndex].isProcessed = true;
     }
-    
 }
