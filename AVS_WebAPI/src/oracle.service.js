@@ -16,8 +16,8 @@ function rSquared(x, y, coefficients) {
         regressionSquaredError += Math.pow(y[i] - yPrediction(x[i], coefficients), 2)
         totalSquaredError += Math.pow(y[i] - yMean, 2)
     }
-    let r2= 1 - (regressionSquaredError / totalSquaredError)
-    return { r2 }
+
+    return 1 - (regressionSquaredError / totalSquaredError)
 
 }
 

@@ -4,7 +4,9 @@ const axios = require("axios");
 
   // Here we should input our NN model
 
-function rSquared( coefficients) {
+// This function takes the output of the Neural network model and computes the RSquare.
+function rSquared( x, y, coefficients) {
+  // some model magic in here.
   let regressionSquaredError = 0
   let totalSquaredError = 0
 
