@@ -46,6 +46,10 @@ async function sendTask(proofOfTask, data, taskDefinitionId) {
   }
 }
 
+async function queryPinata(hash) {
+  const response = await axios.get(`https://gateway.pinata.cloud/ipfs/${hash}`);
+  return response.data;
+}
 async function publishJSONToIpfs(data) {
   var proofOfTask = '';
   try {   
@@ -63,5 +67,6 @@ async function publishJSONToIpfs(data) {
 module.exports = {
   init,
   publishJSONToIpfs,
-  sendTask
+  sendTask,
+  queryPinata
 }

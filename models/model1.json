@@ -1,0 +1,10 @@
+{
+    "model_type": "DecisionTreeClassifier",
+    "parameters": {
+      "max_depth": 1
+    },
+    "performance": {
+      "accuracy": 0.5
+    }
+}
+  
