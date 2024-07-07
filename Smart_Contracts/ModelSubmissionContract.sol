@@ -7,7 +7,7 @@ contract ModelSubmissionContract {
     address public admin = 0x4349807050939f95Aa0C494B496F0a694D20F98E;
     
     struct Model {
-        address submitter;
+        address owner;
         string pinataHash;
         uint256 timestamp;
         uint256 submissionFee;
@@ -24,7 +24,7 @@ contract ModelSubmissionContract {
     }
     
     function submitModel(string memory _pinataHash) external payable {
-        
+
         require(msg.value > 0, "Submission fee must be greater than 0");
 
         models.push(Model({
@@ -62,12 +62,18 @@ contract ModelSubmissionContract {
         return result;
     }
     
-    function withdrawFees() external onlyOwner {
+    function withdrawFees() external onlyAdmin {
         payable(owner).transfer(address(this).balance);
     }
     
-    function markModelAsProcessed(uint256 _modelIndex) external onlyOwner {
+    function markModelAsProcessed(uint256 _modelIndex) external {
+
         require(_modelIndex < models.length, "Invalid model index");
+        require(msg.sender == models[_modelIndex].owner, "Only the model owner can mark it as processed");
+        require(!models[_modelIndex].isProcessed, "Model is already processed");
+        
         models[_modelIndex].isProcessed = true;
+        emit ModelProcessed(_modelIndex, msg.sender);
+        
     }
 }
