@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 contract ModelSubmissionContract {
     
     uint256 id;
-    address public admin = 0x4349807050939f95Aa0C494B496F0a694D20F98E;
+    address public admin;
     
     struct Model {
         uint256 id;
@@ -30,6 +30,10 @@ contract ModelSubmissionContract {
         _;
     }
     
+    constructor() {
+        admin = msg.sender;
+    }
+
     function submitModelByOwner(string memory _pinataHash) external payable {
         
         require(msg.value > 0, "Submission fee must be greater than 0");
