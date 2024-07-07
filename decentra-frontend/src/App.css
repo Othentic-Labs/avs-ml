@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 .App {
   text-align: center;
-  font: 
+  font-family: 'Inter', sans-serif;
 }
 
 .App-header {
@@ -11,13 +13,15 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(26, 17, 83);
 }
 
 .Title {
   color: rgb(26, 17, 83);
   position: absolute;
-  top: 0;
+  font-size: 30px;
+  left:2.5%;
+  top: 2.5%;
 }
 
 .ModelListTitle {
@@ -28,6 +32,30 @@
   top: 45%;
 }
 
+.OwnerListTitle {
+  color: rgb(26, 17, 83);
+  left: 10%;
+  font-size: 20px;
+  position: absolute;
+  top: 13%;
+}
+
+.TrainingListTitle {
+  color: rgb(26, 17, 83);
+  left: 37.5%;
+  font-size: 20px;
+  position: absolute;
+  top: 13%;
+}
+
+.AttestationListTitle {
+  color: rgb(26, 17, 83);
+  left: 65%;
+  font-size: 20px;
+  position: absolute;
+  top: 13%;
+}
+
 .ModelList {
   background-color: rgb(255, 255, 255);
   width: 80%;
@@ -36,4 +64,81 @@
   font-size: 30px;
   position: absolute;
   top: 56%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.OwnerList {
+  background-color: rgb(255, 255, 255);
+  width: 25%;
+  height: 20%;
+  left: 10%;
+  font-size: 30px;
+  position: absolute;
+  top: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.PerformerList {
+  background-color: rgb(255, 255, 255);
+  width: 25%;
+  height: 20%;
+  left: 37.5%;
+  font-size: 30px;
+  position: absolute;
+  top: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.AttestationList {
+  background-color: rgb(255, 255, 255);
+  width: 25%;
+  height: 20%;
+  left: 65%;
+  font-size: 30px;
+  position: absolute;
+  top: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ModelList .Model {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  flex: 1 0 20%;
+  margin: 5px 0;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(26, 17, 83);
+  font-size: 20px;
+  box-sizing: border-box;
 }
