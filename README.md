@@ -1,6 +1,13 @@
-# 🍀 Othentic AVS Samples
+# 🦓 Decentra AI
+
+## What is Decentra AI?
+
+Decentra AI is a marketplace for open source artificial intelligence development. Decentra utilizes cryptocurrency economics for positive incentive alignment to coordinate communities of developers to push AI innovation even further.
+
+Project owners can publish the architecture of the neural network they want to develop and provide the code that will be used to test the models. Developers can then use this information to suggest new models with the potential to earn token rewards. These new suggested models are then checked by a network of attesters to confirm the validity of the improvements.
 
 ## ▶️ Run the demo
+
 We provide a sample docker-compose configuration which sets up the following
 services:
 
