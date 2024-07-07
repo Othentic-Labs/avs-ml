@@ -6,12 +6,15 @@ const validatorService = require("./validator.service");
 
 const router = Router()
 
+// This method is called automatically by the TASK PERFORMER
 router.post("/validate", async (req, res) => {
     var proofOfTask = req.body.proofOfTask;
     console.log(`Validate task: proof of task: ${proofOfTask}`);
     try {
         const result = await validatorService.validate(proofOfTask);
         console.log('Vote:', result ? 'Approve' : 'Not Approved');
+        // this sends via the CLI the result of the validation to the Aggregator.
+        // This result can be captured in the before and After task perform (To be verified)
         return res.status(200).send(new CustomResponse(result));
     } catch (error) {
         console.log(error)

@@ -2,11 +2,9 @@ require('dotenv').config();
 const axios = require("axios");
 
 
-  // I think X and Y should be fixed and provided by the initial Marketplace in pinata.
- // s the challenge
+  // Here we should input our NN model
 
-function rSquared(x, y, coefficients) {
-
+function rSquared( coefficients) {
   let regressionSquaredError = 0
   let totalSquaredError = 0
 
@@ -30,18 +28,3 @@ function rSquared(x, y, coefficients) {
   module.exports = {
     rSquared
   }
-
-
-
-
-/*async function getPrice(pair) {
-  var res = null;
-  try {
-    const result = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${pair}`);
-    res = result.data;
-
-  } catch (err) {
-    console.error("binance api:" + err)
-  }
-  return res;
-}*/

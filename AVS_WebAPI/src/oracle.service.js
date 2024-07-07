@@ -1,17 +1,28 @@
 require('dotenv').config();
-const axios = require("axios");
 
+// Here is again where we need to input our NN model so that he can use the parameters Owner and any Trainee
+function rSquared(x, y, coefficients) {
 
-async function getPrice(pair) {
-    try {
-        const result = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${pair}`);
-        return result.data;
+    let regressionSquaredError = 0
+    let totalSquaredError = 0
 
-    } catch (err) {
-      console.error(err)
+    function yPrediction(x, coefficients) {
+        return coefficients[0] + coefficients[1] * x
     }
-  }
-  
-  module.exports = {
-    getPrice,
-  }
+
+    let yMean = y.reduce((a, b) => a + b) / y.length
+
+    for (let i = 0; i < x.length; i++) {
+        regressionSquaredError += Math.pow(y[i] - yPrediction(x[i], coefficients), 2)
+        totalSquaredError += Math.pow(y[i] - yMean, 2)
+    }
+    let r2= 1 - (regressionSquaredError / totalSquaredError)
+    return { r2 }
+
+}
+
+
+
+module.exports = {
+    rSquared
+}
