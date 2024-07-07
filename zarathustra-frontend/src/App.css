@@ -26,6 +26,7 @@
 
 .ModelListTitle {
   color: rgb(26, 17, 83);
+  font-weight: 100;
   left: 10%;
   font-size: 30px;
   position: absolute;
@@ -35,6 +36,7 @@
 .OwnerListTitle {
   color: rgb(26, 17, 83);
   left: 10%;
+  font-weight: 100;
   font-size: 20px;
   position: absolute;
   top: 13%;
@@ -43,6 +45,7 @@
 .TrainingListTitle {
   color: rgb(26, 17, 83);
   left: 37.5%;
+  font-weight: 100;
   font-size: 20px;
   position: absolute;
   top: 13%;
@@ -51,6 +54,7 @@
 .AttestationListTitle {
   color: rgb(26, 17, 83);
   left: 65%;
+  font-weight: 100;
   font-size: 20px;
   position: absolute;
   top: 13%;
@@ -128,7 +132,19 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.ModelList .Model {
+.NewModel {
+  background-color: rgb(26, 17, 83);
+  right: 9%;
+  font-size: 20px;
+  position: absolute;
+  color: white;
+  width: 15%;
+  height: 5%;
+  border: none;
+  shadow: none;
+}
+
+.ModelList .Model, .OwnerList .Model, .PerformerList .Model, .AttestationList .Model {
   background-color: rgb(255, 255, 255);
   width: 100%;
   flex: 1 0 20%;
@@ -141,4 +157,21 @@
   color: rgb(26, 17, 83);
   font-size: 20px;
   box-sizing: border-box;
+}
+
+.ConnectWalletButton.connected {
+  width: 32%;
+}
+
+.ConnectWalletButton {
+  background-color: rgb(26, 17, 83);
+  right: 9%;
+  top: 5%;
+  font-size: 20px;
+  position: absolute;
+  color: white;
+  width: 12%;
+  height: 5%;
+  border: none;
+  shadow: none;
 }
