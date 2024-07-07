@@ -38,7 +38,7 @@ async function trainModel() {
     }));
 
     // Save the weights to a JSON file
-    fs.writeFileSync('model_weights_trained.json', JSON.stringify(weightData));
+    fs.writeFileSync('model_weights.json', JSON.stringify(weightData));
     console.log('Model architecture and weights saved');
 }
 
