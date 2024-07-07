@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+  font: 
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: rgb(235, 242, 254);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Title {
+  color: rgb(26, 17, 83);
+  position: absolute;
+  top: 0;
+}
+
+.ModelListTitle {
+  color: rgb(26, 17, 83);
+  left: 10%;
+  font-size: 30px;
+  position: absolute;
+  top: 45%;
+}
+
+.ModelList {
+  background-color: rgb(255, 255, 255);
+  width: 80%;
+  height: 40%;
+  left: 10%;
+  font-size: 30px;
+  position: absolute;
+  top: 56%;
+}
