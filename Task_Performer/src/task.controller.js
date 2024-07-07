@@ -48,11 +48,12 @@ async function processModelData({pinataHashOwner,pinataDataOwner,pinataHashSubmi
 
     console.log('Processing model data from owner and submitter', pinataDataOwner,pinataDataSubmitter );
     // The data input as parameters are the data to be passed to our model and get a RSQuared result.
-    const rSquaredSubmitter = oracleService.rSquared(pinataDataSubmitter, pinataDataArchitecture, {})
+    const rSquaredSubmitter = oracleService.rSquared(pinataDataSubmitter, pinataDataArchitecture, false)
     // Now we need to send the information to the Attestator.
     // Ideally we send the CID of owner and Submitter and the result of our experiment,
     // so they can test against it
-    const proofOfTask = await dalService.publishJSONToIpfs(rSquaredSubmitter);// result of performer computation
+    const resultJson= JSON.stringify({rSquaredSubmitter})
+    const proofOfTask = await dalService.publishJSONToIpfs(resultJson);// result of performer computation
     const data = {pinataHashOwner, pinataHashSubmitter, pinataHashArchitecture} // data of
     // send the RPC task to attestators
     await dalService.sendTask(proofOfTask, data,0);

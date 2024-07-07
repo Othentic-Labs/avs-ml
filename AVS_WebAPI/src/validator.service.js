@@ -13,12 +13,12 @@ async function validate({proofOfTask, pinataHashSubmitter, pinataHashOwner, pina
       const pinataDataArchitechture = await dalService.queryPinata(pinataHashArchitecture);
 
       // 1) Compute the submitter rSquared
-      var rSquaredSubmitter = oracleService.rSquared(pinataDataSubmitter, pinataDataArchitechture)
+      var rSquaredSubmitter = oracleService.rSquared(pinataDataSubmitter, pinataDataArchitechture, false)
 
-      if(rSquaredSubmitter === taskResult){
+      if(rSquaredSubmitter === taskResult.rSquaredSubmitter){
           // We continue Validation only if the result of the Submitter computed by the operator is the same result as what the Attestator have.
           // If so we compute the rSQuare of the Owner
-          var rSquaredOwner= oracleService.rSquared(pinataDataOwner, pinataDataArchitechture)
+          var rSquaredOwner= oracleService.rSquared(pinataDataOwner, pinataDataArchitechture,true)
           let isApproved = false;
           if(rSquaredSubmitter>rSquaredOwner){
               isApproved = true;
