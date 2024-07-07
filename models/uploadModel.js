@@ -58,10 +58,16 @@ async function storeCidOnBlockchain(num, cid) {
     try {
         let tx;
         if(num == -1){
-            tx = await contract.submitModelByOwner(cid);
+            console.log("Trying to call submit by owner function");
+            tx = await contract.submitModelByOwner(cid, {
+                gasLimit: 300000
+            });
         }
         else {
-            tx = await contract.submitModelByContributor(num, cid);
+            console.log("Trying to call submit by contributor function");
+            tx = await contract.submitModelByContributor(num, cid, {
+                gasLimit: 300000
+            });
         }
         
         await tx.wait();
@@ -73,6 +79,7 @@ async function storeCidOnBlockchain(num, cid) {
 }
 
 const filePath = process.argv[2];
+const index = process.argv[3];
 
 if (!filePath) {
     console.error('Please provide a path to the JSON file.');
