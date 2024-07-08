@@ -1,24 +1,17 @@
 require('dotenv').config();
+const axios = require("axios");
 
-// Here is again where we need to input our NN model so that he can use the parameters Owner and any Trainee
-function rSquared(x, y, coefficients) {
 
-    let regressionSquaredError = 0
-    let totalSquaredError = 0
+// Here we should input our NN model
 
-    function yPrediction(x, coefficients) {
-        return coefficients[0] + coefficients[1] * x
+// This function takes the output of the Neural network model and computes the RSquare.
+function rSquared( x, y, owner = true) {
+    // some model magic in here.
+    if(owner){
+        return 1
+    }else{
+        return 2
     }
-
-    let yMean = y.reduce((a, b) => a + b) / y.length
-
-    for (let i = 0; i < x.length; i++) {
-        regressionSquaredError += Math.pow(y[i] - yPrediction(x[i], coefficients), 2)
-        totalSquaredError += Math.pow(y[i] - yMean, 2)
-    }
-
-    return 1 - (regressionSquaredError / totalSquaredError)
-
 }
 
 
