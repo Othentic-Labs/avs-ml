@@ -35,8 +35,6 @@ contract ModelSubmissionContract {
     }
 
     function submitModelByOwner(string memory _pinataHash) external payable {
-        
-        require(msg.value > 0, "Submission fee must be greater than 0");
 
         taskOwnerCidMap[id] = _pinataHash;
 
