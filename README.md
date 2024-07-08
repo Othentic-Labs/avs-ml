@@ -4,7 +4,7 @@
 
 ## Key Links
 
-[Zarathustra Demo](https://zarathustra-1.gitbook.io/zarathustra-ai/ "Zarathustra Demo")
+[Zarathustra Demo](https://www.youtube.com/watch?v=Y7-bTKvUL0M/ "Zarathustra Demo")
 
 ## What is Zarathustra AI?
 
