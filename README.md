@@ -10,6 +10,17 @@
 
 Zarathustra AI is a marketplace for open source machine learning models development. It utilizes cryptocurrency economics for positive incentive alignment to coordinate communities of developers to push AI innovation even further.
 
+
+
+Protocols like Zarathustra are essential for numerous reasons. Critically, in a world where AI development lacks openness, transparency, and accountability, we face the potential of misuse, biases, and the concentration of power among a few entities. Open platforms with robust economic incentives also yield the possibility of not only supercharging innovation in AI, but also enabling unprecedented coordination among developers in a way that was previously thought impossible, unlocking new design verticals and ensuring equitable development.
+
+## Diagram
+
+![Zarathustra Diagram](image-documentation/diagram.png)
+
+
+## Workflow Overview
+
 Project owner will publish the architecture of a neural network and initial model parameters, this ensures that the computational complexity remains within the desired bounds of the architecture. He will also allocate space and share the address on a decentralized storage platform where model submissions from the optimizers will be stored.
 
 Subsequently, the project owner will submit the code that will be used to determine the model's accuracy. With this complete information, model optimizers can understand the intended functionality of the model and can start training a model.
@@ -17,12 +28,6 @@ Subsequently, the project owner will submit the code that will be used to determ
 A crucial aspect is that optimizers cannot know beforehand on what data their model will be tested. This is achieved by generating a deterministic but unpredictable number, which decides the input data to be generated, preventing the model from overfitting to predefined values.
 
 Once an optimizer completes the training, they submit their model to decentralized storage. The network of Task Performers and attesters then pick up on this event and run testing code to evaluate the model. The model's output, combined with the input data, is measured by a function that returns an accuracy score. If the tests indicate improvement, the optimizer receives a reward.
-
-Protocols like Zarathustra are essential for numerous reasons. Critically, in a world where AI development lacks openness, transparency, and accountability, we face the potential of misuse, biases, and the concentration of power among a few entities. Open platforms with robust economic incentives also yield the possibility of not only supercharging innovation in AI, but also enabling unprecedented coordination among developers in a way that was previously thought impossible, unlocking new design verticals and ensuring equitable development.
-
-## Diagram
-
-![Zarathustra Diagram](image-documentation/diagram.png)
 
 ## Core Entities
 
@@ -32,13 +37,13 @@ The Zarathustra protocol contains 4 critical entities.
 
 The project owner is an entity that publishes the neural network architecture and initial parameters. The owner uploads the architecture to a decentralized database and, after paying a fee and defining the nature of the off-chain computation, interacts with a smart contract. The off-chain computation, which is the code that operators will run to evaluate the model, indirectly defines the model's goal so that optimizers understand how the model should behave. The owner provides the smart contract with pointers to the model architecture, the model parameters, and the evaluation code, all stored in decentralized storage.
 
-### Contributors
+### Optimizers
 
-The contributor is someone who has seen (through the frontend) the project owner's request for neural network development. After judging if the fee would be enticing to them, they run their own off-chain computations and develop an improved model. Contributors then submit their improved version to a smart contract, with a pointer to the new trained neural network parameters on a decentralized database. 
+The optimizer is someone who has seen (through the frontend) the project owner's request for neural network development. After judging if the fee would be enticing to them, they run their own off-chain computations and develop an improved model. Optimizers then submit their improved version to a smart contract, with a pointer to the new trained neural network parameters on a decentralized database. 
 
 ### Task Performers
 
-Task performers are the first line of validity for the protocol. After seeing an event emission that was triggered by the new model submission of the contributors, they perform an off-chain computation to determine if the new neural network submission is an improvement from the previous. After they have concluded a result, they submit their findings to the AVS Web API via an RPC. 
+Task performers are the first line of validity for the protocol. After seeing an event emission that was triggered by the new model submission of the optimizers, they perform an off-chain computation to determine if the new neural network submission is an improvement from the previous. After they have concluded a result, they submit their findings to the AVS Web API via an RPC. 
 
 ### Attesters
 
@@ -50,7 +55,7 @@ The Zarathustra protocol contains 5 critical contracts.
 
 ### Model Submission Contract
 
-The model submission contract is the brain of the Zarathustra protocol. It controls multiple important aspects which are responsible for different vital operations. Primarily, the model submission contract is responsible for receiving the original model improvement request (from the owner) and the improved model submissions from the contributors. In the midst of this process, it is also in charge of emitting an event emission upon the reception of an improvement submission, and keeping track of different submissions occuring. Finally, the model submission contract is responsible for the charging and paying out of fees. It should be noted that this is a completely seperate process from staking. The project owner pays out a fee to the model submission contract for requesting to get their model improved, and a reward is payed out to the contributor who sucessfully improves it. If the model improved, the address that points to the current (challanged) model will change to the address of the improved (challanging) model. This will alternate every successful improvement
+The model submission contract is the brain of the Zarathustra protocol. It controls multiple important aspects which are responsible for different vital operations. Primarily, the model submission contract is responsible for receiving the original model improvement request (from the owner) and the improved model submissions from the optimizers. In the midst of this process, it is also in charge of emitting an event emission upon the reception of an improvement submission, and keeping track of different submissions occuring. Finally, the model submission contract is responsible for the charging and paying out of fees. It should be noted that this is a completely seperate process from staking. The project owner pays out a fee to the model submission contract for requesting to get their model improved, and a reward is payed out to the optimizer who sucessfully improves it. If the model improved, the address that points to the current (challanged) model will change to the address of the improved (challanging) model. This will alternate every successful improvement
 
 ### Aggregator
 
