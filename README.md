@@ -54,6 +54,10 @@ The AVS logic contract is a small yet signifcant part of the Zarathustra protoco
 
 The AVS Governance contract manages the registration and deregistration of operators, enforces governance policies, and coordinates interactions between operators and various components of the system. It uses roles and access controls to manage permissions and ensure security. The contract handles operator deposits and rewards, and allows for the update of governance logic and settings. Additionally, it interfaces with other contracts for message handling, registry management, and signature verification to maintain the integrity and functionality of the governance framework.
 
+## AVS Node Specification Compliance
+
+Every AVS node implementation is required to follow the Eigenlayer AVS Node Specification. The current hard requirements are only to implement the AVS Node API and implement the Eigenlayer prometheus metrics.
+
 ## ▶️ Run the demo
 
 We provide a sample docker-compose configuration which sets up the following
