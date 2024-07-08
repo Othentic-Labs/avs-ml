@@ -1,6 +1,6 @@
 # 🦓 Zarathustra AI
 
-![Zarathustra Diagram](image-documentation/diagram.png)
+![Zarathustra Diagram](image-documentation/banner.png)
 
 ## What is Zarathustra AI?
 
@@ -9,6 +9,10 @@ Zarathustra AI is a marketplace for open source artificial intelligence developm
 Project owners can publish an architecture of a neural network that they want improved on a decentralized database. Developers can then use this information to suggest new models with the potential to earn token rewards. These new suggested models are then checked by a network of performers and attesters to confirm the validity of the suggested improvements.
 
 Protocols like Zarathustra are essential for numerous reasons. Critically, in a world where AI development lacks openness, transparency, and accountability, we face the potential of misuse, biases, and the concentration of power among a few entities. Open platforms with robust economic incentives also yield the possibility of not only supercharging innovation in AI, but also enabling unprecedented coordination among developers in a way that was previously thought impossible, unlocking new design verticals and ensuring equitable development.
+
+## Diagram
+
+![Zarathustra Diagram](image-documentation/diagram.png)
 
 ## Core Entities
 
