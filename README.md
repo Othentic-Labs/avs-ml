@@ -4,7 +4,7 @@
 
 ## Key Links
 
-[Zarathustra Docs](https://zarathustra-1.gitbook.io/zarathustra-ai/ "Zarathustra Docs")
+[Zarathustra Demo](https://zarathustra-1.gitbook.io/zarathustra-ai/ "Zarathustra Demo")
 
 ## What is Zarathustra AI?
 
@@ -76,6 +76,10 @@ The AVS Governance contract manages the registration and deregistration of opera
 
 Every AVS node implementation is required to follow the Eigenlayer AVS Node Specification. The current hard requirements are only to implement the AVS Node API and implement the Eigenlayer prometheus metrics.
 
+### Frontend
+
+![Zarathustra Frontend](image-documentation/frontend.png)
+
 ## Example Workflow
 
 Let's explore how the Zarathustra workflow functions with a simple example: a neural network modeling the function \( f(x) = x^2 \).
@@ -111,6 +115,6 @@ One of the most challenging aspects of decentralized model training is determini
 
 Another significant challenge was handling the economic aspect. We opted for a more open market approach, where the project owner defines the desired outcome of the model (through the off-chain test) and allows anyone to optimize the model. The project owner covers all associated fees (storage fees, AVS rewards, optimizer rewards), but in return, they gain access to a global pool of machine learning engineers. This open access allows the project owner to benefit from diverse expertise and innovative solutions, enhancing the overall quality and performance of the model.
 
-## Experience Building with Othentic
+## Experience Building With Othentic
 
-Initially the experience was a bit overwhelming because the mental model of moving away from smart contracts to scripts was not easy when it comes to a blockchain context. It was a mindset shift. Over a. Period of time with the help of other members it was slowly easier to understand how this stack works and now it seems this is one of the best ways to create an AVS, because you can focus on the logic and the infrastructure is taken care of for you. It is highly versatile and customisable. 
+Initially the experience with Othentic was a bit overwhelming because the mental model of moving away from smart contracts to scripts was not easy when it comes to a blockchain context. It is also important to keep in mind that we are native web3 developers. It was a mindset shift for us to adapt to. Over a period of time, however, with the help of other members it was slowly easier to understand how this stack works. Now that we are better versed in Othentic, it really does seem to us that this is one of the best ways to create an AVS, because you can focus on the logic and the infrastructure is taken care of for you. It is highly versatile and customisable in all aspects of AVS development.
