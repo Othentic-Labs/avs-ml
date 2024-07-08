@@ -10,7 +10,7 @@
 
 Zarathustra AI is a marketplace for open source machine learning models development. It utilizes cryptocurrency economics for positive incentive alignment to coordinate communities of developers to push AI innovation even further.
 
-Owners can upload their model architecture and code for evaluation to the platform. The community of ML engineers, called Contributors, then optimizes the model. Contributors earn rewards for improving models based on the evaluation code, fostering a collaborative and incentivized workflow that accelerates the development and deployment of advanced AI solutions.
+Owners can upload their model architecture and code for evaluation to the platform. The community of ML engineers, called Optimizers, then optimizes the model. Optimizers earn rewards for improving models based on the evaluation code, fostering a collaborative and incentivized workflow that accelerates the development and deployment of advanced AI solutions.
 
 Protocols like Zarathustra are essential for numerous reasons. Critically, in a world where AI development lacks openness, transparency, and accountability, we face the potential of misuse, biases, and the concentration of power among a few entities. Open platforms with robust economic incentives also yield the possibility of not only supercharging innovation in AI, but also enabling unprecedented coordination among developers in a way that was previously thought impossible, unlocking new design verticals and ensuring equitable development.
 
