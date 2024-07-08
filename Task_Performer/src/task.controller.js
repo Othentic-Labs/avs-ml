@@ -63,24 +63,25 @@ console.log('Listening for ContributorModelSubmitted events...');
 // .on('error', console.error);
 
 
-async function processModelData({pinataHashOwner,pinataHashSubmitter,pinataHashArchitecture }) {
-    // Implement your model processing logic here
-    const pinataDataOwner = await dalService.queryPinata(pinataHashOwner);
-    const pinataDataSubmitter = await dalService.queryPinata(pinataHashSubmitter);
-    const pinataDataArchitecture = await dalService.queryPinata(pinataHashArchitecture);
-    console.log('Processing model data from owner and submitter', pinataDataOwner,pinataDataSubmitter );
-    // The data input as parameters are the data to be passed to our model and get a RSQuared result.
-    const rSquaredSubmitter = oracleService.rSquared(pinataDataSubmitter, pinataDataArchitecture, false)
-    // Now we need to send the information to the Attestator.
-    // Ideally we send the CID of owner and Submitter and the result of our experiment,
-    // so they can test against it
-    const resultJson= JSON.stringify({rSquaredSubmitter})
-    const proofOfTask = await dalService.publishJSONToIpfs(resultJson);// result of performer computation
-    const data = {pinataHashOwner, pinataHashSubmitter, pinataHashArchitecture} // data of
-    // send the RPC task to attestators
-    await dalService.sendTask(proofOfTask, data,0);
+// async function processModelData({pinataHashOwner,pinataHashSubmitter,pinataHashArchitecture }) {
+//     // Implement your model processing logic here
+//     const pinataDataOwner = await dalService.queryPinata(pinataHashOwner);
+//     const pinataDataSubmitter = await dalService.queryPinata(pinataHashSubmitter);
+//     const pinataDataArchitecture = await dalService.queryPinata(pinataHashArchitecture);
+//     console.log('Processing model data from owner and submitter', pinataDataOwner,pinataDataSubmitter );
+//     // The data input as parameters are the data to be passed to our model and get a RSQuared result.
+//     const rSquaredSubmitter = oracleService.rSquared(pinataDataSubmitter, pinataDataArchitecture, false)
+//     // Now we need to send the information to the Attestator.
+//     // Ideally we send the CID of owner and Submitter and the result of our experiment,
+//     // so they can test against it
+//     const resultJson= JSON.stringify({rSquaredSubmitter})
+//     const proofOfTask = await dalService.publishJSONToIpfs(resultJson);// result of performer computation
+//     const data = {pinataHashOwner, pinataHashSubmitter, pinataHashArchitecture} // data of
+//     // send the RPC task to attestators
+//     await dalService.sendTask(proofOfTask, data,0);
+//     return proofOfTask;
 
-}
+// }
 
 router.post("/execute", async (req, res) => {
     console.log("Executing task");
@@ -89,15 +90,27 @@ router.post("/execute", async (req, res) => {
         
         const { arg1, arg2 } = req.body;
         console.log(`Received arguments: arg1 = ${arg1}, arg2 = ${arg2}`);
-
-        var taskDefinitionId = Number(req.body.taskDefinitionId) || 0;
-        console.log(`taskDefinitionId: ${taskDefinitionId}`);
-
-        const result = true;
-        const cid = await dalService.publishJSONToIpfs(result);
-        const data = "hello";
-        await dalService.sendTask(cid, data, taskDefinitionId);
-        return res.status(200).send(new CustomResponse({proofOfTask: cid, data: data, taskDefinitionId: taskDefinitionId}, "Task executed successfully"));
+        const pinataDataOwner = await dalService.queryPinata(arg1);
+        const pinataDataSubmitter = await dalService.queryPinata(arg2);
+        const pinataDataArchitecture = await dalService.queryPinata(arg2);
+        console.log('Processing model data from owner and submitter', pinataDataOwner,pinataDataSubmitter);
+        // The data input as parameters are the data to be passed to our model and get a RSQuared result.
+        const rSquaredSubmitter = oracleService.rSquared(pinataDataSubmitter, pinataDataArchitecture, false)
+        // Now we need to send the information to the Attestator.
+        // Ideally we send the CID of owner and Submitter and the result of our experiment,
+        // so they can test against it
+        // console.log(rSquaredSubmitter)
+        // let rString = rSquaredSubmitter.toString()
+        const resultJson= {"rSquaredSubmitter": "2"};
+        console.log(resultJson, typeof(resultJson))
+        const proofOfTask = await dalService.publishJSONToIpfs(resultJson);// result of performer computation
+        const data = ethers.AbiCoder.defaultAbiCoder().encode(["string", "string", "string"], [arg1, arg2, arg2]);
+        console.log("Data after encoding", data)
+        //Ethers ABI Encoder
+        // send the RPC task to attestators
+        //console.log("Data from sendTask", data)
+        await dalService.sendTask(proofOfTask, data, 0);
+        return res.status(200).send(new CustomResponse({proofOfTask: proofOfTask, data: data, taskDefinitionId: 0}, "Task executed successfully"));
     } catch (error) {
         console.log(error)
         return res.status(500).send(new CustomError("Something went wrong", {}));

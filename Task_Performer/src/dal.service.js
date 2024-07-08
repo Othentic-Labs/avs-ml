@@ -1,6 +1,7 @@
 require('dotenv').config();
 const pinataSDK = require("@pinata/sdk");
 const { ethers, AbiCoder } = require('ethers');
+const axios = require("axios");
 
 var pinataApiKey='';
 var pinataSecretApiKey='';
@@ -21,7 +22,6 @@ async function sendTask(proofOfTask, data, taskDefinitionId) {
   var wallet = new ethers.Wallet(privateKey);
   var performerAddress = wallet.address;
 
-  data = ethers.hexlify(ethers.toUtf8Bytes(data));
   const message = ethers.AbiCoder.defaultAbiCoder().encode(["string", "bytes", "address", "uint16"], [proofOfTask, data, performerAddress, taskDefinitionId]);
   const messageHash = ethers.keccak256(message);
   const sig = wallet.signingKey.sign(messageHash).serialized;
