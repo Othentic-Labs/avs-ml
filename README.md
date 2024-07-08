@@ -1,6 +1,10 @@
 # 🦓 Zarathustra AI
 
-![Zarathustra Diagram](image-documentation/diagram.png)
+![Banner](image-documentation/banner.png)
+
+## Key Links
+
+[Zarathustra Docs](https://zarathustra-1.gitbook.io/zarathustra-ai/ "Zarathustra Docs")
 
 ## What is Zarathustra AI?
 
@@ -15,6 +19,10 @@ A crucial aspect is that optimizers cannot know beforehand on what data their mo
 Once an optimizer completes the training, they submit their model to decentralized storage. The network of Task Performers and attesters then pick up on this event and run testing code to evaluate the model. The model's output, combined with the input data, is measured by a function that returns an accuracy score. If the tests indicate improvement, the optimizer receives a reward.
 
 Protocols like Zarathustra are essential for numerous reasons. Critically, in a world where AI development lacks openness, transparency, and accountability, we face the potential of misuse, biases, and the concentration of power among a few entities. Open platforms with robust economic incentives also yield the possibility of not only supercharging innovation in AI, but also enabling unprecedented coordination among developers in a way that was previously thought impossible, unlocking new design verticals and ensuring equitable development.
+
+## Diagram
+
+![Zarathustra Diagram](image-documentation/diagram.png)
 
 ## Core Entities
 
@@ -38,7 +46,7 @@ Attesters are the second line of validity for the protocol. After seeing the res
 
 ## Core Contracts
 
-The Zarathustra protocol contains 5 critical components.
+The Zarathustra protocol contains 5 critical contracts.
 
 ### Model Submission Contract
 
