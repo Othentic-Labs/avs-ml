@@ -8,16 +8,15 @@
 
 ## What is Zarathustra AI?
 
-Zarathustra AI is a marketplace for open source machine learning models development. It utilizes cryptocurrency economics for positive incentive alignment to coordinate communities of developers to push AI innovation even further.
+Zarathustra AI is a marketplace for open source machine learning development. It utilizes cryptocurrency economics for positive incentive alignment to coordinate communities of developers to push AI innovation even further.
 
-Owners can upload their model architecture and code for evaluation to the platform. The community of ML engineers, called Optimizers, then optimizes the model. Optimizers earn rewards for improving models based on the evaluation code, fostering a collaborative and incentivized workflow that accelerates the development and deployment of advanced AI solutions.
+Owners can upload their model architecture and code for evaluation to the platform. The community of ML engineers, called optimizers, then optimizes the model. Optimizers earn rewards for improving models based on the evaluation code, fostering a collaborative and incentivized workflow that accelerates the development and deployment of advanced AI solutions.
 
 Protocols like Zarathustra are essential for numerous reasons. Critically, in a world where AI development lacks openness, transparency, and accountability, we face the potential of misuse, biases, and the concentration of power among a few entities. Open platforms with robust economic incentives also yield the possibility of not only supercharging innovation in AI, but also enabling unprecedented coordination among developers in a way that was previously thought impossible, unlocking new design verticals and ensuring equitable development.
 
 ## Diagram
 
 ![Zarathustra Diagram](image-documentation/diagram.png)
-
 
 ## Workflow Overview
 
@@ -106,47 +105,8 @@ The owner aims to find the most accurate model given a specific architecture. He
 
 8. **Reward Distribution**: The optimizer is rewarded from the tokens provided by the owner within the Model Submission Contract.
 
+## Why We Went With This Approach
 
-## Why we went with this approach
 One of the most challenging aspects of decentralized model training is determining whether the model has genuinely improved. Traditional benchmarks are ineffective because models could simply overfit (memorize) all input-output pairs instead of learning to model the underlying function. To address this, we decided not to share the data used for testing the models. Instead, we generate the testing data on the fly once the model is submitted. This way, optimizers cannot predict the test data and are forced to train a model that can handle all inputs well, resulting in a model that is well-generalized and not overfitted.
 
 Another significant challenge was handling the economic aspect. We opted for a more open market approach, where the project owner defines the desired outcome of the model (through the off-chain test) and allows anyone to optimize the model. The project owner covers all associated fees (storage fees, AVS rewards, optimizer rewards), but in return, they gain access to a global pool of machine learning engineers. This open access allows the project owner to benefit from diverse expertise and innovative solutions, enhancing the overall quality and performance of the model.
-
-## ▶️ Run the demo
-
-We provide a sample docker-compose configuration which sets up the following
-services:
-
-- Aggregator node
-- 3 Attester nodes
-- AVS WebAPI endpoint
-- TaskPerformer endpoint
-
-To set up the environment, create a `.env` file with the usual Othentic
-configurations (see the `.env.example`), then run:
-```console
-docker-compose up --build
-```
-
-> [!NOTE]
-> This might take a few minutes when building the images
-
-### Updating the Othentic node version
-To update the `othentic-cli` inside the docker images to the latest version, you
-need to rebuild the images using the following command:
-```console
-docker-compose build --no-cache
-```
-
-## 🏗️ Architecture
-The Othentic Attester nodes communicate with an AVS WebAPI endpoint which
-validates tasks on behalf of the nodes. The attesters then sign the tasks based
-on the AVS WebAPI response.
-
-Attester nodes can either all communicate with a centralized endpoint or each
-implement their own validation logic.
-
-### AVS WebAPI
-```
-POST task/validate returns (bool) {"proofOfTask": "{proofOfTask}"};
-```
