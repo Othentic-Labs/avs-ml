@@ -19,7 +19,7 @@ function App() {
 
   const contractAddress = '0xA2679365bB048Bd6d471813410714862faa0EB58';
 
-  const fetchLiveModels = async () => {
+  const fetchModels = async () => {
     if (!walletAddress) return;
   
     try {
@@ -57,6 +57,47 @@ function App() {
     }
   };
 
+  const fetchLiveModels = async () => {
+    if (!walletAddress) return;
+  
+    try {
+      const contractInstance = new ethers.Contract(contractAddress, contractABI, signer);
+  
+      const modelCount = await contractInstance.getModelCount();
+      console.log('Model count:', modelCount.toString());
+  
+      const response = await contractInstance.getAllModels();
+      console.log('Raw response from getAllModels:', response);
+  
+      const formattedModels = response.map(modelData => {
+        if (typeof modelData === 'object' && modelData !== null) {
+          return {
+            id: modelData.id ? modelData.id.toString() : 'N/A',
+            owner: modelData.owner || 'N/A',
+            pinataHash: modelData.pinataHash || 'N/A',
+            updatedPinataHash: modelData.updatedPinataHash || 'N/A',
+            timestamp: modelData.timestamp ? modelData.timestamp.toString() : 'N/A',
+            submissionFee: modelData.submissionFee ? ethers.formatEther(modelData.submissionFee) : 'N/A',
+            isProcessed: modelData.isProcessed !== undefined ? modelData.isProcessed : 'N/A'
+          };
+        } else {
+          console.log('Unexpected model data format:', modelData);
+          return null;
+        }
+      }).filter(model => model !== null);
+  
+      console.log('Formatted models:', formattedModels);
+  
+      const userLiveModels = formattedModels.filter(model => model.owner.toLowerCase() === walletAddress.toLowerCase());
+  
+      console.log('User live models:', userLiveModels);
+      setLiveModels(userLiveModels);
+    } catch (error) {
+      console.error('Error fetching live models:', error);
+      setLiveModels([]);
+    }
+  };
+  
   const connectWallet = async () => {
     if (typeof window.ethereum !== 'undefined') {
       try {
@@ -121,6 +162,7 @@ function App() {
 
   useEffect(() => {
     if (walletAddress) {
+      fetchModels();
       fetchLiveModels();
     }
   }, [walletAddress]);
@@ -142,7 +184,6 @@ function App() {
       dummyEarnings.push(`Earning ${i}`);
     }
 
-    setLiveModels(dummyModels);
     setPastContributions(dummyContributions);
     setPastEarnings(dummyEarnings);
   }, []);
@@ -190,8 +231,10 @@ function App() {
         <div className={`ModelList ${walletAddress ? '' : 'blurred'}`}>
           {models.map((model, index) => (
             <div key={index} className="Model">
-              <p><strong>ID:</strong> {model.id}</p>
-              <p><strong>Pinata Hash:</strong> {model.pinataHash}</p>
+              <p className="ModelInfo">
+                <strong>ID:</strong> {model.id} <br />
+                <strong>Pinata Hash:</strong> {model.pinataHash}
+              </p>
               <button className="TrainButton" onClick={trainNewModel}>Train</button>
             </div>
           ))}
@@ -199,9 +242,13 @@ function App() {
   
         <h1 className="OwnerListTitle">Your Live Models</h1>
         <div className={`OwnerList ${walletAddress ? '' : 'blurred'}`}>
-        {liveModels.map((contribution, index) => (
-            <div key={index} className="Model">{contribution}</div>
+        {liveModels.map((model, index) => (
+            <p className="OwnerModelInfo">
+              <strong>ID:</strong> {model.id} <br />
+              <strong>Pinata Hash:</strong> {model.pinataHash}
+            </p>
           ))}
+          <button className="StopButton" onClick={trainNewModel}>Stop</button>
         </div>
   
         <h1 className="TrainingListTitle">Your Past Contributions</h1>
