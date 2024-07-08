@@ -1,6 +1,10 @@
 # 🦓 Zarathustra AI
 
-![Zarathustra Diagram](image-documentation/banner.png)
+![Banner](image-documentation/banner.png)
+
+## Key Links
+
+[Zarathustra Docs](https://zarathustra-1.gitbook.io/zarathustra-ai/ "Zarathustra Docs")
 
 ## What is Zarathustra AI?
 
