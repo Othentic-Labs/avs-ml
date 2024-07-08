@@ -32,7 +32,7 @@ Attesters are the second line of validity for the protocol. After seeing the res
 
 ## Core Contracts
 
-The Zarathustra protocol contains 5 critical components.
+The Zarathustra protocol contains 5 critical contracts.
 
 ### Model Submission Contract
 
