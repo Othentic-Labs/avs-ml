@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "@tensorflow/tfjs-node": "^4.20.0"
+    "@pinata/sdk": "^2.1.0",
+    "@tensorflow/tfjs-node": "^4.20.0",
+    "axios": "^1.7.2"
   }
 }
